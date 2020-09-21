@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WebShop.Domain
 {
-    class Order
+    public class Order
     {
         public int OrderId { get; set; }
         public DateTime date { get; set; }

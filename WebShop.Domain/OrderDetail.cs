@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WebShop.Domain
 {
-    class OrderDetail
+    public class OrderDetail
     {
         public int OrderDetailId { get; set; }
         public int Price { get; set; }

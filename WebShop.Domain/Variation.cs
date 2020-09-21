@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WebShop.Domain
 {
-    class Variation
+    public class Variation
     {
         public int VariationId { get; set; }
         public string Name { get; set; }

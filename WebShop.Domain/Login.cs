@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WebShop.Domain
 {
-    class Login
+    public class Login
     {
         public int LoginId { get; set; }
         public string Email { get; set; }
