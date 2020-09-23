@@ -15,5 +15,15 @@ namespace WebShopAPI.Data
         }
 
         public DbSet<WebShop.Domain.Product> Product { get; set; }
+
+        public DbSet<WebShop.Domain.Category> Category { get; set; }
+
+        public DbSet<WebShop.Domain.Customer> Customer { get; set; }
+
+        public DbSet<WebShop.Domain.Order> Order { get; set; }
+
+        public DbSet<WebShop.Domain.Variation> Variation { get; set; }
+
+        public DbSet<WebShop.Domain.OrderDetail> OrderDetail { get; set; }
     }
 }
