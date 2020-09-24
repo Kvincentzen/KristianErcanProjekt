@@ -8,6 +8,7 @@ namespace WebShop.Domain
     {
         public int OrderId { get; set; }
         public DateTime date { get; set; }
-        public Customer CustomderId { get; set; }
+        public Customer Customer { get; set; }
+        public int CustomerId { get; set; }
     }
 }

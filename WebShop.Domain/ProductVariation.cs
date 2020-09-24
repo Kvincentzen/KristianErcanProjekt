@@ -6,8 +6,10 @@ namespace WebShop.Domain
 {
     public class ProductVariation
     {
-        public Product ProductId { get; set; }
-        public Variation VariationId { get; set; }
+        public int ProductId { get; set; }
+        public int VariationId { get; set; }
+        public Product Product { get; set; }
+        public Variation Variation { get; set; }
         public int PrisMod { get; set; }
 
     }

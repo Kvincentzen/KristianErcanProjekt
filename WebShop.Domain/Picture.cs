@@ -4,11 +4,12 @@ using System.Text;
 
 namespace WebShop.Domain
 {
-    public class Pictures
+    public class Picture
     {
 
         public int PictureId { get; set; }
         public string Name { get; set; }
-        public Product ProductId { get; set; }
+        public Product Product { get; set; }
+        public int ProductId { get; set; }
     }
 }

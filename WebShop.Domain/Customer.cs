@@ -7,7 +7,8 @@ namespace WebShop.Domain
     public class Customer
     {
         public int CustomerId { get; set; }
-        public Login LoginId { get; set; }
+        public Login Login { get; set; }
+        public int LoginId { get; set; }
         public string FullName { get; set; }
     }
 }

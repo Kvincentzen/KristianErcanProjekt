@@ -12,48 +12,48 @@ namespace WebShopAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OrdersController : ControllerBase
+    public class CategoryController : ControllerBase
     {
         private readonly WebShopAPIContext _context;
 
-        public OrdersController(WebShopAPIContext context)
+        public CategoryController(WebShopAPIContext context)
         {
             _context = context;
         }
 
-        // GET: api/Orders
+        // GET: api/Category
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Order>>> GetOrder()
+        public async Task<ActionResult<IEnumerable<Category>>> GetCategory()
         {
-            return await _context.Order.ToListAsync();
+            return await _context.Category.ToListAsync();
         }
 
-        // GET: api/Orders/5
+        // GET: api/Category/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Order>> GetOrder(int id)
+        public async Task<ActionResult<Category>> GetCategory(int id)
         {
-            var order = await _context.Order.FindAsync(id);
+            var category = await _context.Category.FindAsync(id);
 
-            if (order == null)
+            if (category == null)
             {
                 return NotFound();
             }
 
-            return order;
+            return category;
         }
 
-        // PUT: api/Orders/5
+        // PUT: api/Category/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutOrder(int id, Order order)
+        public async Task<IActionResult> PutCategory(int id, Category category)
         {
-            if (id != order.OrderId)
+            if (id != category.CategoryId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(order).State = EntityState.Modified;
+            _context.Entry(category).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace WebShopAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!OrderExists(id))
+                if (!CategoryExists(id))
                 {
                     return NotFound();
                 }
@@ -74,37 +74,37 @@ namespace WebShopAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Orders
+        // POST: api/Category
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Order>> PostOrder(Order order)
+        public async Task<ActionResult<Category>> PostCategory(Category category)
         {
-            _context.Order.Add(order);
+            _context.Category.Add(category);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetOrder", new { id = order.OrderId }, order);
+            return CreatedAtAction("GetCategory", new { id = category.CategoryId }, category);
         }
 
-        // DELETE: api/Orders/5
+        // DELETE: api/Category/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Order>> DeleteOrder(int id)
+        public async Task<ActionResult<Category>> DeleteCategory(int id)
         {
-            var order = await _context.Order.FindAsync(id);
-            if (order == null)
+            var category = await _context.Category.FindAsync(id);
+            if (category == null)
             {
                 return NotFound();
             }
 
-            _context.Order.Remove(order);
+            _context.Category.Remove(category);
             await _context.SaveChangesAsync();
 
-            return order;
+            return category;
         }
 
-        private bool OrderExists(int id)
+        private bool CategoryExists(int id)
         {
-            return _context.Order.Any(e => e.OrderId == id);
+            return _context.Category.Any(e => e.CategoryId == id);
         }
     }
 }

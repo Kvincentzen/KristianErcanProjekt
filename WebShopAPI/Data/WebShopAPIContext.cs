@@ -25,5 +25,9 @@ namespace WebShopAPI.Data
         public DbSet<WebShop.Domain.Variation> Variation { get; set; }
 
         public DbSet<WebShop.Domain.OrderDetail> OrderDetail { get; set; }
+
+        public DbSet<WebShop.Domain.Login> Login { get; set; }
+
+        public DbSet<WebShop.Domain.Picture> Pictures { get; set; }
     }
 }

@@ -6,16 +6,29 @@ using WebShop.Domain;
 
 namespace WebShop.Data
 {
-    public class WebShopContext
+    public class WebShopContext :DbContext
     {
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Login> Logins { get; set; }
-        public DbSet<ProductVariation> ProductVariations { get; set; }
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<Pictures> Pictures { get; set; }
-        public DbSet<OrderDetail> OrderDetails { get; set; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<Variation> Variations { get; set; }
+        public DbSet<Product> Product { get; set; }
+        public DbSet<Category> Category { get; set; }
+        public DbSet<Login> Login { get; set; }
+        public DbSet<ProductVariation> ProductVariation { get; set; }
+        public DbSet<Customer> Customer { get; set; }
+        public DbSet<Picture> Picture { get; set; }
+        public DbSet<OrderDetail> OrderDetail { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<Variation> Variation { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder) 
+        {
+            modelBuilder.Entity<ProductVariation>().HasKey(s => new { s.ProductId, s.VariationId });
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
+        {
+            optionsBuilder.UseSqlServer(
+                "Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = WebShopAppData");
+        }
     }
+
+
 }
