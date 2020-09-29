@@ -12,48 +12,48 @@ namespace WebShopAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoryController : ControllerBase
+    public class LoginsController : ControllerBase
     {
         private readonly WebShopAPIContext _context;
 
-        public CategoryController(WebShopAPIContext context)
+        public LoginsController(WebShopAPIContext context)
         {
             _context = context;
         }
 
-        // GET: api/Category
+        // GET: api/Logins
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Category>>> GetCategory()
+        public async Task<ActionResult<IEnumerable<Login>>> GetLogin()
         {
-            return await _context.Category.ToListAsync();
+            return await _context.Login.ToListAsync();
         }
 
-        // GET: api/Category/5
-        [HttpGet("{name}")]
-        public async Task<ActionResult<Category>> GetCategory(string name)
+        // GET: api/Logins/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Login>> GetLogin(int id)
         {
-            var categoryProd = await _context.Category.FindAsync(name);
+            var login = await _context.Login.FindAsync(id);
 
-            if (categoryProd == null)
+            if (login == null)
             {
                 return NotFound();
             }
 
-            return categoryProd;
+            return login;
         }
 
-        // PUT: api/Category/5
+        // PUT: api/Logins/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCategory(int id, Category category)
+        public async Task<IActionResult> PutLogin(int id, Login login)
         {
-            if (id != category.CategoryId)
+            if (id != login.LoginId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(category).State = EntityState.Modified;
+            _context.Entry(login).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace WebShopAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CategoryExists(id))
+                if (!LoginExists(id))
                 {
                     return NotFound();
                 }
@@ -74,37 +74,37 @@ namespace WebShopAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Category
+        // POST: api/Logins
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Category>> PostCategory(Category category)
+        public async Task<ActionResult<Login>> PostLogin(Login login)
         {
-            _context.Category.Add(category);
+            _context.Login.Add(login);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCategory", new { id = category.CategoryId }, category);
+            return CreatedAtAction("GetLogin", new { id = login.LoginId }, login);
         }
 
-        // DELETE: api/Category/5
+        // DELETE: api/Logins/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Category>> DeleteCategory(int id)
+        public async Task<ActionResult<Login>> DeleteLogin(int id)
         {
-            var category = await _context.Category.FindAsync(id);
-            if (category == null)
+            var login = await _context.Login.FindAsync(id);
+            if (login == null)
             {
                 return NotFound();
             }
 
-            _context.Category.Remove(category);
+            _context.Login.Remove(login);
             await _context.SaveChangesAsync();
 
-            return category;
+            return login;
         }
 
-        private bool CategoryExists(int id)
+        private bool LoginExists(int id)
         {
-            return _context.Category.Any(e => e.CategoryId == id);
+            return _context.Login.Any(e => e.LoginId == id);
         }
     }
 }
