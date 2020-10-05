@@ -29,10 +29,10 @@ namespace WebShopAPI.Controllers
         }
 
         // GET: api/Category/5
-        [HttpGet("{name}")]
-        public async Task<ActionResult<Category>> GetCategory(string name)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Category>> GetCategory(string id)
         {
-            var categoryProd = await _context.Category.FindAsync(name);
+            var categoryProd = await _context.Category.FindAsync(id);
 
             if (categoryProd == null)
             {
@@ -46,12 +46,8 @@ namespace WebShopAPI.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCategory(int id, Category category)
+        public async Task<IActionResult> PutCategory(Category category)
         {
-            if (id != category.CategoryId)
-            {
-                return BadRequest();
-            }
 
             _context.Entry(category).State = EntityState.Modified;
 
@@ -61,14 +57,14 @@ namespace WebShopAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CategoryExists(id))
+                /*if (!CategoryExists(categoryId))
                 {
                     return NotFound();
                 }
                 else
                 {
                     throw;
-                }
+                }*/
             }
 
             return NoContent();
