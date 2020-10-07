@@ -25,15 +25,14 @@ namespace WebShopAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetProduct()
         {
-            return await _context.Product.ToListAsync();
+            return await _context.Product.Include(s=> s.Category).ToListAsync();
         }
 
         // GET: api/Products/5
-        [HttpGet("{category}")]
-        public async Task<ActionResult<Product>> GetProduct(int id)
+        [HttpGet("{CategoryId}")]
+        public async Task<ActionResult<IEnumerable<Product>>> GetProduct(int CategoryId)
         {
-            var product = await _context.Product.FindAsync(id);
-
+            var product = await _context.Product.Where(s => s.CategoryId == CategoryId).ToListAsync();
             if (product == null)
             {
                 return NotFound();
